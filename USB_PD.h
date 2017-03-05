@@ -500,8 +500,8 @@ typedef union {
  */
 #define CONFIG_USB_PD_PULLUP TYPEC_RP_1A5
 /* Define typical operating power and max power */
-#define PD_OPERATING_POWER_MW 25000ul
-#define PD_MAX_POWER_MW       25000ul
+#define PD_OPERATING_POWER_MW 100000ul
+#define PD_MAX_POWER_MW       100000ul
 #define PD_MAX_CURRENT_MA     5000ul
 #define PD_MAX_VOLTAGE_MV     20000ul
 void pd_power_supply_reset(int port);

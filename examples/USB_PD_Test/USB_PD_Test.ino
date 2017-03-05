@@ -7,11 +7,19 @@
 
 FUSB302 usbc;
 const int pin_fusb302b_int = A0;
+const int pin_light        = 13;
 USB_TCPM *usb_tcpm = &usbc;
 USB_PD  usb_pd(usb_tcpm, 0, PD_STATE_SNK_DISCONNECTED);
 enum pd_states last_state = PD_STATE_SNK_DISCONNECTED;
 
 void setup() {
+  pinMode(pin_light, OUTPUT);
+  digitalWrite(pin_light, LOW);
+  delay(250);
+  digitalWrite(pin_light, HIGH);
+  delay(250);
+  digitalWrite(pin_light, LOW);
+  
   Serial.begin(115200);
   Serial.println("*****");
   usb_pd.init();
@@ -31,7 +39,9 @@ int pd_is_vbus_present(int port) {
 
 void pd_set_input_current_limit(int port, uint32_t max_ma,
         uint32_t supply_voltage) {
-  return;
+  if ((max_ma * supply_voltage) > 75000000) {
+    digitalWrite(pin_light, HIGH);
+  }
 }
 
 int task_clear_event(int port) {
@@ -180,4 +190,3 @@ void pd_check_dr_role(int port, int dr_role, int flags) {
 int pd_is_valid_input_voltage(uint32_t mv) {
   return 1;
 }
-
