@@ -1,7 +1,8 @@
 /*
   USB_PD.c - USB Power Delivery
-  Created by Jason Cerundolo, 2017.
-  Released under an MIT license. See LICENSE.md. 
+  Copyright 2010 The Chromium OS Authors
+  Copyright 2017 Jason Cerundolo
+  Released under an MIT license. See LICENSE file.  
 */
 
 #include "USB_PD.h"
